@@ -1,4 +1,7 @@
+{% load static %}
+
 <h1>Proyectos</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 <form method="POST">
     {% csrf_token %}
     <ul>

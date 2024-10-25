@@ -1,19 +1,94 @@
-<h1>Proyectos</h1>
-<form method="POST">
-    {% csrf_token %}
-    <ul>
-        {% for proyecto in proyectos %}
-        <li>
-            <input type="radio" name="proyecto_seleccionado" value="{{ proyecto.id }}">
-            {{ proyecto.nombre }} - {{ proyecto.descripcion }}
-            <a href="{% url 'detalles_proyecto' proyecto.id %}">Ver detalles del proyecto</a>
-            <!-- Botón para eliminar el proyecto -->
-            <a href="{% url 'eliminar_proyecto' proyecto.id %}" 
-               onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?');">Borrar Proyecto</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <button type="submit">Seleccionar proyecto y crear tarea</button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos</title>
+    <style>
+        /* Contenedor general */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4a90e2;
+        }
+        /* Lista de proyectos */
+        .project-list {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .project-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .project-item label {
+            display: flex;
+            align-items: center;
+        }
+        /* Botones */
+        .button, .delete-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button {
+            background-color: #4a90e2;
+            color: #fff;
+            margin-right: 10px;
+        }
+        .delete-button {
+            background-color: #e94e4e;
+            color: #fff;
+        }
+        /* Formulario */
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
 
-<a href="{% url 'index' %}">Volver a la página principal</a>
+    <h1>Gestión de Proyectos</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <ul class="project-list">
+            {% for proyecto in proyectos %}
+            <li class="project-item">
+                <label>
+                    <input type="radio" name="proyecto_seleccionado" value="{{ proyecto.id }}">
+                    <strong>{{ proyecto.nombre }}</strong> - {{ proyecto.descripcion }}
+                </label>
+                <div>
+                    <a href="{% url 'detalles_proyecto' proyecto.id %}" class="button">Detalles</a>
+                    <a href="{% url 'eliminar_proyecto' proyecto.id %}" 
+                       onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?');" 
+                       class="delete-button">Borrar Proyecto</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit" class="button">Seleccionar proyecto y crear tarea</button>
+    </form>
+    <br>
+    <a href="{% url 'index' %}" class="button">Volver a la página principal</a>
+
+</body>
+</html>

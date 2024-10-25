@@ -1,9 +1,11 @@
 <!-- myapp/templates/crear_tarea.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Crear Tarea para el Proyecto: {{ proyecto.nombre }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Crear Tarea para el Proyecto: {{ proyecto.nombre }}</h1>
