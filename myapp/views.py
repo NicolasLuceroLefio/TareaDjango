@@ -56,7 +56,6 @@ def editar_proyectos(request):
     return render(request, 'editar_proyectos.html', {'proyectos': proyectos})
 
 
-
 def crear_equipo(request):
     if request.method == 'POST':
         form = EquipoForm(request.POST)
@@ -109,3 +108,14 @@ def confirmar_eliminar_equipo(request, equipo_id):
 def listar_equipos(request):
     equipos = Equipo.objects.all()  # Recupera todos los equipos de la base de datos
     return render(request, 'listar_equipos.html', {'equipos': equipos})  # Pasa los equipos a la plantilla
+
+
+#  esto es nuevo
+
+
+def eliminar_proyecto(request, proyecto_id):
+    proyecto = get_object_or_404(Proyecto, id=proyecto_id)
+    proyecto.delete()  # Esto eliminará el proyecto y las tareas asociadas
+    return redirect('editar_proyectos')  # Redirigir a la página que lista los proyectos
+
+

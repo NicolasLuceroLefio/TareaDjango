@@ -15,7 +15,11 @@ urlpatterns = [
 
     path('equipo/confirmar_eliminar/<int:equipo_id>/', views.confirmar_eliminar_equipo, name='confirmar_eliminar_equipo'),
 
-
     path('equipos/', views.listar_equipos, name='listar_equipos'),  # Ruta para listar equipos
-    path('eliminar-equipo/<int:equipo_id>/', views.eliminar_equipo, name='eliminar_equipo'),  # Ruta para eliminar un equipo
+    path('eliminar-equipo/<int:equipo_id>/', views.eliminar_equipo, name='eliminar_equipo'),
+
+    path('proyecto/<int:proyecto_id>/', views.eliminar_proyecto, name='eliminar_proyecto'),
+    
+
+
 ]
