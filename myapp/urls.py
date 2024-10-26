@@ -12,14 +12,11 @@ urlpatterns = [
     path('crear_tarea/<int:proyecto_id>/', views.crear_tarea, name='crear_tarea'),
     path('detalles_proyecto/<int:proyecto_id>/', views.detalles_proyecto, name='detalles_proyecto'),  # Nueva ruta
     path('editar_proyectos/', views.editar_proyectos, name='editar_proyectos'),  # Ruta para editar proyectos
-
     path('equipo/confirmar_eliminar/<int:equipo_id>/', views.confirmar_eliminar_equipo, name='confirmar_eliminar_equipo'),
-
     path('equipos/', views.listar_equipos, name='listar_equipos'),  # Ruta para listar equipos
     path('eliminar-equipo/<int:equipo_id>/', views.eliminar_equipo, name='eliminar_equipo'),
-
     path('proyecto/<int:proyecto_id>/', views.eliminar_proyecto, name='eliminar_proyecto'),
     
-
-
+    path('eliminar_tarea/<int:tarea_id>/', views.eliminar_tarea, name='eliminar_tarea'),
+    path('borrar_tarea/', views.borrar_tarea, name='borrar_tarea'),  # Ruta para editar proyectos
 ]

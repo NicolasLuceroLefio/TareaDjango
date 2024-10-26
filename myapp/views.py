@@ -110,12 +110,26 @@ def listar_equipos(request):
     return render(request, 'listar_equipos.html', {'equipos': equipos})  # Pasa los equipos a la plantilla
 
 
-#  esto es nuevo
-
-
 def eliminar_proyecto(request, proyecto_id):
     proyecto = get_object_or_404(Proyecto, id=proyecto_id)
     proyecto.delete()  # Esto eliminará el proyecto y las tareas asociadas
     return redirect('editar_proyectos')  # Redirigir a la página que lista los proyectos
 
 
+
+def eliminar_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, id=tarea_id)
+    tarea.delete()
+    return redirect('detalles_proyecto', proyecto_id=tarea.proyecto.id)  # Redirige al proyecto correspondiente
+
+
+def borrar_tarea(request):
+    proyectos = Proyecto.objects.all()  # Obtiene todos los proyectos para listarlos
+
+    if request.method == 'POST':
+        # Aquí puedes manejar la lógica para editar el proyecto si es necesario
+        proyecto_id = request.POST.get('proyecto_seleccionado')
+        if proyecto_id:
+            return redirect('crear_tarea', proyecto_id=proyecto_id)  # Redirigir a la vista de detalles
+
+    return render(request, 'borrar_tarea.html', {'proyectos': proyectos})
